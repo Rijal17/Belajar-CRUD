@@ -33,10 +33,6 @@ if (isset($_POST["simpan"])) {
                     <label for="nim">Nim</label>
                     <input type="text" name="nim" class="form-control" require>
                     <br>
-<!--                     
-                    <label for="waktu">Waktu Penyiraman</label>
-                    <input type="text" name="waktu" class="form-control" require>
-                    <br> -->
                     
                     <button type="submit" class="btn btn-primary" name="simpan" onclick="return confirm('Apakah Ingin Menambahkan ?');">Simpan</button>
                     <button type="submit" class="btn btn-danger" name="reset" onclick="return confirm('Apakah Ingin Menambahkan ?');">Reset</button>
@@ -76,7 +72,7 @@ if (isset($_POST["simpan"])) {
                                         <td align="center"><?= $a ?></td>
                                         <td><?= $data['nama'] ?></td>
                                         <td align="center"><?= $data['nim'] ?></td>
-                                        <td align="center"><?= date('Y-m-d') ?></td>
+                                        <td align="center"><?= $data['waktu'] ?></td>
                                         <td>
                                             <div class="card-header-1" align="center">
                                                 <div class="card-header">
