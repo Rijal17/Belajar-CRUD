@@ -40,12 +40,12 @@ if (mysqli_num_rows($sql) == 0) {
                     <input type="text" name="nama" class="form-control" require value="<?= $data['nama'] ?>">
                     <br>
                     
-                    <label for="nim">Nim</label>
-                    <input type="text" name="nim" class="form-control" require value="<?= $data['nim'] ?>">
+                    <label for="jenis_tanaman">Jenis Tanaman</label>
+                    <input type="text" name="jenis_tanaman" class="form-control" require value="<?= $data['jenis_tanaman'] ?>">
                     <br>
-                    
-                    <label for="waktu">Waktu Penyiraman</label>
-                    <input type="text" name="waktu" class="form-control" require value="<?= $data['waktu'] ?>">
+
+                    <label for="kelembapan">Kelembapan</label>
+                    <input type="text" name="kelembapan" class="form-control" require value="<?= $data['kelembapan'] ?>">
                     <br>
                     
                     <button type="submit" class="btn btn-primary" name="simpan" onclick="return confirm('Apakah Ingin Menambahkan ?');">Simpan</button>
@@ -69,7 +69,8 @@ if (mysqli_num_rows($sql) == 0) {
                                         <tr align="center">
                                             <th>NO. </th>
                                             <th>Nama</th>
-                                            <th>Nim</th>
+                                            <th>Jenis Tanaman</th>
+                                            <th>Kelembapan</th>
                                             <th>Waktu Penyiraman</th>
                                             <th>Aksi</th>
                                         </tr>  
@@ -84,8 +85,9 @@ if (mysqli_num_rows($sql) == 0) {
                                         ?>
                                     <tr>
                                         <td align="center"><?= $a ?></td>
-                                        <td><?= $data['nama'] ?></td>
-                                        <td align="center"><?= $data['nim'] ?></td>
+                                        <td align="center"><?= $data['nama'] ?></td>
+                                        <td align="center"><?= $data['jenis_tanaman'] ?></td>
+                                        <td align="center"><?= $data['kelembapan'] ?></td>
                                         <td align="center"><?= $data['waktu'] ?></td>
                                         <td>
                                             <div class="card-header-1" align="center">
