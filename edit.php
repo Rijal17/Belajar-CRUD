@@ -3,6 +3,9 @@ include 'koneksi.php';
 include 'function.php';
 if (isset($_POST["simpan"])) {
     edit($_POST);
+}else if(isset($_POST["kembali"])){
+    header("location: home.php");
+    exit;
 }
 
 
@@ -34,23 +37,10 @@ if (mysqli_num_rows($sql) == 0) {
             <h5 align="center">FORM PENYIRAMAN TANAMAN OTOMATIS</h5>
             <form method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <input class="form-control" name="id" value="<?= $id ?>" hidden>   
-                    
-                    <label for="nama">Nama</label>
-                    <input type="text" name="nama" class="form-control" require value="<?= $data['nama'] ?>">
-                    <br>
-                    
-                    <label for="jenis_tanaman">Jenis Tanaman</label>
-                    <input type="text" name="jenis_tanaman" class="form-control" require value="<?= $data['jenis_tanaman'] ?>">
-                    <br>
-
-                    <label for="kelembapan">Kelembapan</label>
-                    <input type="text" name="kelembapan" class="form-control" require value="<?= $data['kelembapan'] ?>">
-                    <br>
-                    
-                    <button type="submit" class="btn btn-primary" name="simpan" onclick="return confirm('Apakah Ingin Menambahkan ?');">Simpan</button>
-                    <button type="submit" class="btn btn-danger" name="reset" onclick="return confirm('Apakah Ingin Menambahkan ?');">Reset</button>
-                    
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        + Edit Data
+                    </button>
+                    <button type="submit" class="btn btn-primary" name="kembali" >Kembali</button>
                 </div>
             </form>
         </div>
@@ -92,7 +82,7 @@ if (mysqli_num_rows($sql) == 0) {
                                         <td>
                                             <div class="card-header-1" align="center">
                                                 <div class="card-header">
-                                                    <a href="edit.php?id=<?= $data['id'] ?>" class="btn btn-success">Ubah</a>
+                                                    <a href="edit.php?id=<?= $data['id'] ?>" class="btn btn-primary">Ubah</a>
                                                     <a href="hapus.php?id=<?= $data['id'] ?>" class="btn btn-danger" onclick="return confirm('Apakah Ingin Menghapus Data ? ');">Hapus</a>
                                                 </div>
                                             </div>
@@ -105,18 +95,48 @@ if (mysqli_num_rows($sql) == 0) {
                         </div>
                     </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
 </body>
+<div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Form Edit Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input class="form-control" name="id" value="<?= $id ?>" hidden>
+
+                        <input type="text" name="nama" class="form-control" placeholder="Masukan Nama" value="<?= $data['nama'] ?>">
+                        <br>
+                        <input type="text" name="jenis_tanaman" class="form-control" placeholder="Masukan Jenis Tanaman" value="<?= $data['jenis_tanaman'] ?>">
+                        <br>
+                        <input type="text" name="kelembapan" class="form-control" placeholder="Masukan Kelembapan" value="<?= $data['kelembapan'] ?>">
+                        <br>
+                        <button type="submit" class="btn btn-primary" name="simpan" onclick="return confirm('Apakah Ingin Menambahkan ?');">Simpan</button>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                    
 </html>
